@@ -15,6 +15,8 @@ Patch0:		%{name}-source_path.patch
 URL:		http://openmosix.sourceforge.net/
 BuildRequires:	kernel-mosix-headers >= 2.4.22-4.1
 BuildRequires:	ncurses-devel
+ExclusiveArch:	%{ix86}
+BuildArch:	%{ix86}
 Requires(post):	/sbin/ldconfig
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
