@@ -4,7 +4,7 @@ Name:		openmosix-tools
 %define	ver	0.3.6
 %define	subver	2
 Version:	%{ver}.%{subver}
-Release:	2
+Release:	3
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://heanet.dl.sourceforge.net/openmosix/%{name}-%{ver}-%{subver}.tar.gz
