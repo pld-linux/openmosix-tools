@@ -4,13 +4,14 @@ Name:		openmosix-tools
 %define	ver	0.3.6
 %define	subver	2
 Version:	%{ver}.%{subver}
-Release:	0.1
+Release:	0.9
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://heanet.dl.sourceforge.net/openmosix/%{name}-%{ver}-%{subver}.tar.gz
 # Source0-md5:	e947c622b945fda7f24a949b73ba5280
 Source1:	openmosix.init
 Source2:	openmosix.sysconfig
+Patch0:		%{name}-source_path.patch
 URL:		http://openmosix.sourceforge.net/
 BuildRequires:	kernel-mosix-headers >= 2.4.22-1
 BuildRequires:	ncurses-devel
@@ -65,8 +66,14 @@ Biblioteki statyczne do openMosiksa.
 %prep
 %setup -q -n %{name}-%{ver}-%{subver}
 
+%patch0 -p1
+
 %build
 CPPFLAGS="-I/usr/include/ncurses"
+%{__aclocal}
+%{__autoconf}
+%{__automake}
+
 %configure \
 	--enable-rpmbuild \
 	--with-kerneldir=%{_kernelsrcdir} \
@@ -110,13 +117,13 @@ fi
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/openmosix
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+#%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(754,root,root) %{_initrddir}/openmosix
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*
 %{_libdir}/lib*.la
 %{_includedir}/*.h
 
