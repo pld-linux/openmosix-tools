@@ -1,12 +1,13 @@
 Summary:	The userland tools of the openMosix-system
 Summary(pl):	Narzêdzia przestrzeni u¿ytkownika dla openMosiksa
 Name:		openmosix-tools
-Version:	0.3.4
-Release:	0.2
+Version:	0.3.5
+Release:	0.9
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/openmosix/%{name}-%{version}.tar.bz2
-# Source0-md5:	f9c9cee038aa95004a77907b226ff006
+# Source0-md5:	d335929c17f38436c0fb34284165d921
+Source1:	openmosix.init
 URL:		http://openmosix.sourceforge.net/
 BuildRequires:	kernel-mosix-headers >= 2.4.22-1
 BuildRequires:	ncurses-devel
@@ -14,6 +15,8 @@ Requires(post):	/sbin/ldconfig
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		kmosix_ver	2.4.22
+%define		_kernelsrcdir	/usr/src/linux-%{kmosix_ver}
 %define		_bindir		/bin
 %define		_sbindir	/sbin
 %define		_libdir		/lib
@@ -75,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm $RPM_BUILD_ROOT/etc/rc.d/init.d/openmosix
+%{__install} %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/openmosix
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -96,11 +102,9 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/openmosix.map
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/openmosix/openmosix.config
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%dir %{_sysconfdir}/openmosix
 %attr(754,root,root) %{_initrddir}/openmosix
 %{_mandir}/man1/*
 
