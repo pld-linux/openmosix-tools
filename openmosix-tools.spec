@@ -34,7 +34,7 @@ kolumnê, w której pokazywany jest wêze³, na którym dzia³a proces.
 
 %package devel
 Summary:        openMosix headers files
-Summary(pl):    openMosix pliki nag³ókowe
+Summary(pl):    Pliki nag³ówkowe openMosiksa
 Group:          Development/Libraries
 Requires:       %{name}-devel = %{version}
                                                                                 
@@ -42,11 +42,11 @@ Requires:       %{name}-devel = %{version}
 openMosix heades files.
                                                                                 
 %description devel -l pl
-openMosix pliki nag³ókowe.
+Pliki nag³ówkowe openMosiksa.
 
 %package static
 Summary:        Static openMosix libraries
-Summary(pl):    Biblioteki statyczne do openMosix'a
+Summary(pl):    Biblioteki statyczne do openMosiksa
 Group:          Development/Libraries
 Requires:       %{name}-devel = %{version}
                                                                                 
@@ -54,7 +54,7 @@ Requires:       %{name}-devel = %{version}
 Static openMosix libraries.
                                                                                 
 %description static -l pl
-Biblioteki statyczne do openMosix.
+Biblioteki statyczne do openMosiksa.
 
 %prep
 %setup -q
