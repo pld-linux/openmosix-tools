@@ -12,7 +12,6 @@ URL:		http://openmosix.sourceforge.net/
 BuildRequires:	ncurses-devel
 Requires(post):	/sbin/ldconfig
 Requires(post,preun):	/sbin/chkconfig
-Requires(post,preun):	perl-base
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_bindir		/bin
