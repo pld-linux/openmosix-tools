@@ -56,32 +56,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-/sbin/chkconfig --add openmosix
-if [ "$1" = "1" ] ; then  # first install
-   # Add mosrun-commands in /etc/inittab
-   perl -pi -e 's!:(/etc/rc.d/rc)!:/bin/mosrun -h $1!' /etc/inittab
-   perl -pi -e 's!:(/sbin/update)!:/bin/mosrun -h $1!' /etc/inittab
-   perl -pi -e 's!:(/sbin/shutdown)!:/bin/mosrun -h $1!' /etc/inittab
-   # Add nolock-command in /etc/init.d/sshd
-   perl -i -e 'local $/; $_ = <>; s!(start\(\)\s+{\n)!$1\ttest -f /proc/\$\$/lock && echo 0 \> /proc/\$\$/lock\n\n!; print' /etc/init.d/sshd
-   # Add mfs to slocate.cron
-   perl -pi -e 's!(/usr/bin/updatedb -f \"nfs)!$1,mfs!' /etc/cron.daily/slocate.cron
-   # Tell user to edit mosix.map
-   echo -e "\nEdit /etc/openmosix.map if you don't want to use the autodiscovery daemon.\n"
+if [ "$1" = "1" ] ; then 
+	/sbin/chkconfig --add openmosix
+	echo -e "\nEdit /etc/openmosix.map if you don't want to use the autodiscovery daemon.\n"
 fi
 
 %preun
-if [ "$1" = "0" ] ; then # last uninstall
-   # Remove links to startup-script
+if [ "$1" = "0" ] ; then 
    /sbin/chkconfig --del openmosix
-   # Remove mosrun-commands in /etc/inittab
-   perl -pi -e 's!:/bin/mosrun -h !:!' /etc/inittab
-   # Remove nolock-command in /etc/rc.d/init.d/sshd
-   perl -i -e 'local $/; $_ = <>; s!\ttest -f /proc/\$\$/lock && echo 0 \> /proc/\$\$/lock\n\n!!g; print' /etc/init.d/sshd
-   # Remove mfs from slocate.cron
-   perl -pi -e 's/mfs,//' /etc/cron.daily/slocate.cron
 fi
-
 
 %postun	-p /sbin/ldconfig
 
