@@ -36,26 +36,26 @@ openmosiksowe wersje narzêdzi ps i top (mps i mtop), maj±ce dodatkow±
 kolumnê, w której pokazywany jest wêze³, na którym dzia³a proces.
 
 %package devel
-Summary:        openMosix headers files
-Summary(pl):    Pliki nag³ówkowe openMosiksa
-Group:          Development/Libraries
-Requires:       %{name}-devel = %{version}
-                                                                                
+Summary:	openMosix headers files
+Summary(pl):	Pliki nag³ówkowe openMosiksa
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}
+
 %description devel
 openMosix heades files.
-                                                                                
+
 %description devel -l pl
 Pliki nag³ówkowe openMosiksa.
 
 %package static
-Summary:        Static openMosix libraries
-Summary(pl):    Biblioteki statyczne do openMosiksa
-Group:          Development/Libraries
-Requires:       %{name}-devel = %{version}
-                                                                                
+Summary:	Static openMosix libraries
+Summary(pl):	Biblioteki statyczne do openMosiksa
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}
+
 %description static
 Static openMosix libraries.
-                                                                                
+
 %description static -l pl
 Biblioteki statyczne do openMosiksa.
 
@@ -93,7 +93,7 @@ fi
 
 %preun
 if [ "$1" = "0" ] ; then
-   /sbin/chkconfig --del openmosix
+	/sbin/chkconfig --del openmosix
 fi
 
 %postun	-p /sbin/ldconfig
