@@ -34,7 +34,7 @@ openMosix cluster. It also contains openMosix versions of ps and top
 the processes are running.
 
 %description -l pl
-openMosix to rozszerzenie j±dra Linuksa o klastowanie odwzorowuj±ce
+openMosix to rozszerzenie j±dra Linuksa o klastrowanie odwzorowuj±ce
 pojedynczy system. Ten pakiet zawiera narzêdzia przestrzeni
 u¿ytkownika potrzebne dla klastrów openMosix. Zawiera tak¿e
 openmosiksowe wersje narzêdzi ps i top (mps i mtop), maj±ce dodatkow±
