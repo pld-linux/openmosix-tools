@@ -105,9 +105,11 @@ fi
 %{_mandir}/man1/*
 
 %files devel
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/*.h
 
 %files static
+%defattr(644,root,root,755)
 %{_libdir}/lib*.a
