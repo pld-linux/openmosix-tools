@@ -29,7 +29,7 @@ else
 	exit 0
 fi
 
-if [  -d /proc/hpc ]; then
+if [ ! -d /proc/hpc ]; then
 	echo "Cannot find the /proc/hpc directory."
 	echo "Looks like this is not an openMosix enabled kernel."
 	echo "Configuration ABORTED."
@@ -42,7 +42,7 @@ case "$1" in
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/openmosix ]; then
 		msg_starting openmosix
-		/bin/setpe -f /etc/openmosix.map
+		/sbin/setpe -r -f /etc/openmosix.map
 		deltext
 		ok
 		RETVAL=$?
@@ -55,7 +55,7 @@ case "$1" in
 	if [ -f /var/lock/subsys/openmosix ]; then
 		msg_stopping openmosix
 		/bin/mosctl expel
-		/bin/setpe -off
+		/sbin/setpe -off
 		deltext
 		ok
 		rm -f /var/lock/subsys/openmosix
