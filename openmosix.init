@@ -42,7 +42,7 @@ case "$1" in
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/openmosix ]; then
 		msg_starting openmosix
-		/sbin/setpe -r -f /etc/openmosix.map
+		/sbin/setpe -w -f /etc/openmosix.map
 		deltext
 		ok
 		RETVAL=$?
