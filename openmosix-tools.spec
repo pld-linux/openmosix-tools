@@ -4,7 +4,7 @@ Name:		openmosix-tools
 %define	ver	0.3.6
 %define	subver	2
 Version:	%{ver}.%{subver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://heanet.dl.sourceforge.net/openmosix/%{name}-%{ver}-%{subver}.tar.gz
@@ -16,7 +16,6 @@ URL:		http://openmosix.sourceforge.net/
 BuildRequires:	kernel-mosix-headers >= 2.4.22-4.1
 BuildRequires:	ncurses-devel
 ExclusiveArch:	%{ix86}
-BuildArch:	%{ix86}
 Requires(post):	/sbin/ldconfig
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
