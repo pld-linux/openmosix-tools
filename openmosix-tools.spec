@@ -19,7 +19,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_kernelsrcdir	/usr/src/linux-%{kmosix_ver}
 %define		_bindir		/bin
 %define		_sbindir	/sbin
-%define		_libdir		/lib
+%define		_libdir		/%{_lib}
 
 %description
 openMosix is a Linux kernel extension for single-system image
@@ -39,7 +39,7 @@ kolumnê, w której pokazywany jest wêze³, na którym dzia³a proces.
 Summary:	openMosix headers files
 Summary(pl):	Pliki nag³ówkowe openMosiksa
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description devel
 openMosix heades files.
@@ -51,7 +51,7 @@ Pliki nag³ówkowe openMosiksa.
 Summary:	Static openMosix libraries
 Summary(pl):	Biblioteki statyczne do openMosiksa
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static openMosix libraries.
@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm $RPM_BUILD_ROOT/etc/rc.d/init.d/openmosix
-%{__install} %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/openmosix
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/openmosix
 
 %clean
 rm -rf $RPM_BUILD_ROOT
