@@ -6,11 +6,18 @@ Release:	0.1
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/openmosix/%{name}-%{version}.tar.bz2
+# Source0-md5:	f9c9cee038aa95004a77907b226ff006
 URL:		http://openmosix.sourceforge.net/
+#BuildRequires:	kernel-mosix-headers
+BuildRequires:	ncurses-devel
 Requires(post):	/sbin/ldconfig
 Requires(post,preun):	/sbin/chkconfig
 Requires(post,preun):	perl-base
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_bindir		/bin
+%define		_sbindir	/sbin
+%define		_libdir		/lib
 
 %description
 openMosix is a Linux kernel extension for single-system image
@@ -30,14 +37,11 @@ kolumnê, w której pokazywany jest wêze³, na którym dzia³a proces.
 %setup -q
 
 %build
-./configure \
+CPPFLAGS="-I/usr/include/ncurses"
+%configure \
 	--enable-rpmbuild \
-	--bindir=/bin \
-	--sbindir=/sbin \
-	--includedir=%{_includedir} \
-	--mandir=%{_mandir} \
-	--libdir=/lib \
-	--with-kerneldir=%{_kernelsrcdir}-openmosix
+	--with-kerneldir=%{_kernelsrcdir}-openmosix \
+	--with-sysvdir=%{_initrddir}
 
 %{__make} all
 
@@ -83,12 +87,20 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%doc AUTHORS ChangeLog NEWS README TODO
+%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %dir %{_sysconfdir}/openmosix
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/openmosix.map
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/openmosix/openmosix.config
-%attr(754,root,root) /etc/rc.d/init.d/openmosix
-%doc %{_mandir}/man1/*
-%attr(755,root,root) /bin/*
-%attr(755,root,root) /sbin/*
-%attr(755,root,root) /lib/*
-%{_includedir}/*
+%attr(754,root,root) %{_initrddir}/openmosix
+%{_mandir}/man1/*
+
+# devel
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
+%{_includedir}/*.h
+
+# static
+%{_libdir}/lib*.a
