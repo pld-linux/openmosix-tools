@@ -42,7 +42,11 @@ case "$1" in
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/openmosix ]; then
 		msg_starting openmosix
-		/sbin/setpe -w -f /etc/openmosix.map
+		if is_yes "${NODE_AUTODISCOVERY}"; then
+			/sbin/omdiscd
+		else
+			/sbin/setpe -w -f /etc/openmosix.map
+		fi
 		deltext
 		ok
 		RETVAL=$?
@@ -55,6 +59,9 @@ case "$1" in
 	if [ -f /var/lock/subsys/openmosix ]; then
 		msg_stopping openmosix
 		/bin/mosctl expel
+		if is_yes "${NODE_AUTODISCOVERY}"; then
+			killproc omdiscd
+		fi
 		/sbin/setpe -off
 		deltext
 		ok
