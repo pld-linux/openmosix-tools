@@ -1,13 +1,16 @@
 Summary:	The userland tools of the openMosix-system
 Summary(pl):	Narzêdzia przestrzeni u¿ytkownika dla openMosiksa
 Name:		openmosix-tools
-Version:	0.3.5
-Release:	0.9
+%define	ver	0.3.6
+%define	subver	2
+Version:	%{ver}.%{subver}
+Release:	0.1
 License:	GPL
 Group:		Base/Kernel
-Source0:	http://dl.sourceforge.net/openmosix/%{name}-%{version}.tar.bz2
-# Source0-md5:	d335929c17f38436c0fb34284165d921
+Source0:	http://heanet.dl.sourceforge.net/openmosix/%{name}-%{ver}-%{subver}.tar.gz
+# Source0-md5:	e947c622b945fda7f24a949b73ba5280
 Source1:	openmosix.init
+Source2:	openmosix.sysconfig
 URL:		http://openmosix.sourceforge.net/
 BuildRequires:	kernel-mosix-headers >= 2.4.22-1
 BuildRequires:	ncurses-devel
@@ -60,7 +63,7 @@ Static openMosix libraries.
 Biblioteki statyczne do openMosiksa.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{ver}-%{subver}
 
 %build
 CPPFLAGS="-I/usr/include/ncurses"
@@ -80,6 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 
 rm $RPM_BUILD_ROOT/etc/rc.d/init.d/openmosix
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/openmosix
+install -d $RPM_BUILD_ROOT/etc/sysconfig
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/openmosix
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -102,6 +107,7 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/openmosix.map
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/openmosix
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
