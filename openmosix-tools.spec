@@ -55,13 +55,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-if [ "$1" = "1" ] ; then 
+if [ "$1" = "1" ] ; then
 	/sbin/chkconfig --add openmosix
 	echo -e "\nEdit /etc/openmosix.map if you don't want to use the autodiscovery daemon.\n"
 fi
 
 %preun
-if [ "$1" = "0" ] ; then 
+if [ "$1" = "0" ] ; then
    /sbin/chkconfig --del openmosix
 fi
 
