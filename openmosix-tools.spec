@@ -13,6 +13,8 @@ Source1:	openmosix.init
 Source2:	openmosix.sysconfig
 Patch0:		%{name}-source_path.patch
 URL:		http://openmosix.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	kernel-mosix-headers >= 2.4.22-4.1
 BuildRequires:	ncurses-devel
 ExclusiveArch:	%{ix86}
