@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# openmosix	openmosix short service description
+#
+# chkconfig:	2345 95 5
+#
+# description:	openMosix is an extension of the operating system,
+#		supporting scalable and transparent cluster computing.
+#
+# $Id$
+
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get service config - may override defaults
+[ -f /etc/sysconfig/openmosix ] && . /etc/sysconfig/openmosix
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down openmosix
+		exit 1
+	fi
+else
+	exit 0
+fi
+
+if [  -d /proc/hpc ]; then
+	echo "Cannot find the /proc/hpc directory."
+	echo "Looks like this is not an openMosix enabled kernel."
+	echo "Configuration ABORTED."
+	exit 1
+fi
+
+
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/openmosix ]; then
+		msg_starting openmosix
+		/bin/setpe -f /etc/openmosix.map
+		deltext
+		ok
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/openmosix
+	else
+		msg_already_running openmosix
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/openmosix ]; then
+		msg_stopping openmosix
+		/bin/mosctl expel
+		/bin/setpe -off
+		deltext
+		ok
+		rm -f /var/lock/subsys/openmosix
+	else
+		msg_not_running openmosix
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  status)
+	status openmosix
+	RETVAL=$?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|status}"
+	exit 3
+esac
+
+exit $RETVAL
+
+# This must be last line !
+# vi:syntax=sh:tw=78:ts=8:sw=4
