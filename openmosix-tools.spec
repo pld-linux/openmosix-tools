@@ -16,6 +16,7 @@ URL:		http://openmosix.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kernel-mosix-headers >= 2.4.22-4.1
+BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 ExclusiveArch:	%{ix86}
 Requires(post):	/sbin/ldconfig
@@ -116,8 +117,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/openmosix.map
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/openmosix
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/openmosix.map
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/openmosix
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 #%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
