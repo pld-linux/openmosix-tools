@@ -7,7 +7,7 @@ Version:	%{ver}.%{subver}
 Release:	4
 License:	GPL
 Group:		Base/Kernel
-Source0:	http://heanet.dl.sourceforge.net/openmosix/%{name}-%{ver}-%{subver}.tar.gz
+Source0:	http://dl.sourceforge.net/openmosix/%{name}-%{ver}-%{subver}.tar.gz
 # Source0-md5:	e947c622b945fda7f24a949b73ba5280
 Source1:	openmosix.init
 Source2:	openmosix.sysconfig
@@ -68,12 +68,12 @@ Static openMosix libraries.
 Biblioteki statyczne do openMosiksa.
 
 %prep
-%setup -q -n %{name}-%{ver}-%{subver}
+%setup -q
 
 %patch0 -p1
 
 %build
-CPPFLAGS="-I/usr/include/ncurses"
+CPPFLAGS="-I%{_includedir}/ncurses"
 %{__aclocal}
 %{__autoconf}
 %{__automake}
