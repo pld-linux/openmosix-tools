@@ -73,7 +73,7 @@ Biblioteki statyczne do openMosiksa.
 %patch0 -p1
 
 %build
-CPPFLAGS="-I%{_includedir}/ncurses"
+CPPFLAGS="-I/usr/include/ncurses"
 %{__aclocal}
 %{__autoconf}
 %{__automake}
