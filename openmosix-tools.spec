@@ -1,5 +1,5 @@
 Summary:	The userland tools of the openMosix-system
-Summary(pl):	Narzêdzia przestrzeni u¿ytkownika dla openMosiksa
+Summary(pl.UTF-8):   NarzÄ™dzia przestrzeni uÅ¼ytkownika dla openMosiksa
 Name:		openmosix-tools
 %define	ver	0.3.6
 %define	subver	2
@@ -36,35 +36,35 @@ openMosix cluster. It also contains openMosix versions of ps and top
 (mps and mtop) that has an additional column which shows on what node
 the processes are running.
 
-%description -l pl
-openMosix to rozszerzenie j±dra Linuksa o klastrowanie odwzorowuj±ce
-pojedynczy system. Ten pakiet zawiera narzêdzia przestrzeni
-u¿ytkownika potrzebne dla klastrów openMosix. Zawiera tak¿e
-openmosiksowe wersje narzêdzi ps i top (mps i mtop), maj±ce dodatkow±
-kolumnê, w której pokazywany jest wêze³, na którym dzia³a proces.
+%description -l pl.UTF-8
+openMosix to rozszerzenie jÄ…dra Linuksa o klastrowanie odwzorowujÄ…ce
+pojedynczy system. Ten pakiet zawiera narzÄ™dzia przestrzeni
+uÅ¼ytkownika potrzebne dla klastrÃ³w openMosix. Zawiera takÅ¼e
+openmosiksowe wersje narzÄ™dzi ps i top (mps i mtop), majÄ…ce dodatkowÄ…
+kolumnÄ™, w ktÃ³rej pokazywany jest wÄ™zeÅ‚, na ktÃ³rym dziaÅ‚a proces.
 
 %package devel
 Summary:	openMosix headers files
-Summary(pl):	Pliki nag³ówkowe openMosiksa
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe openMosiksa
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description devel
 openMosix heades files.
 
-%description devel -l pl
-Pliki nag³ówkowe openMosiksa.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe openMosiksa.
 
 %package static
 Summary:	Static openMosix libraries
-Summary(pl):	Biblioteki statyczne do openMosiksa
+Summary(pl.UTF-8):   Biblioteki statyczne do openMosiksa
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static openMosix libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne do openMosiksa.
 
 %prep
