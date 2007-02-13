@@ -1,5 +1,5 @@
 Summary:	The userland tools of the openMosix-system
-Summary(pl.UTF-8):   Narzędzia przestrzeni użytkownika dla openMosiksa
+Summary(pl.UTF-8):	Narzędzia przestrzeni użytkownika dla openMosiksa
 Name:		openmosix-tools
 %define	ver	0.3.6
 %define	subver	2
@@ -45,7 +45,7 @@ kolumnę, w której pokazywany jest węzeł, na którym działa proces.
 
 %package devel
 Summary:	openMosix headers files
-Summary(pl.UTF-8):   Pliki nagłówkowe openMosiksa
+Summary(pl.UTF-8):	Pliki nagłówkowe openMosiksa
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -57,7 +57,7 @@ Pliki nagłówkowe openMosiksa.
 
 %package static
 Summary:	Static openMosix libraries
-Summary(pl.UTF-8):   Biblioteki statyczne do openMosiksa
+Summary(pl.UTF-8):	Biblioteki statyczne do openMosiksa
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
