@@ -81,7 +81,7 @@ CPPFLAGS="-I/usr/include/ncurses"
 %configure \
 	--enable-rpmbuild \
 	--with-kerneldir=%{_kernelsrcdir} \
-	--with-sysvdir=%{_initrddir}
+	--with-sysvdir=/etc/rc.d/init.d
 
 %{__make} \
 	all
@@ -122,7 +122,7 @@ fi
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 #%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(754,root,root) %{_initrddir}/openmosix
+%attr(754,root,root) /etc/rc.d/init.d/openmosix
 %{_mandir}/man1/*
 
 %files devel
